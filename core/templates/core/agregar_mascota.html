@@ -1,0 +1,48 @@
+{% comment %} 
+a.	Nombre.
+b.	Raza (crear un modelo aparte).
+c.	Genero. (M o H)
+d.	Fecha ingreso.
+e.	Fecha nacimiento (puede ser nula, ya que hay la posibilidad que no se sepa con certeza).
+f.	Imagen de la mascota.
+g.	Estado (rescatado, disponible o adoptado). (guardar como un modelo aparte).
+h.	En el LANDING page se deben mostrar las imágenes de los perros adoptados (desde la BBDD).
+i.	En la galería se deben listar las imágenes de los perros en estado rescatados (desde la BBDD). 
+{% endcomment %}
+
+{% block contenido %}
+
+
+<h2>Ingreso de mascota</h2>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <label for="">Nombre</label>
+    <input type="text" name="txtnombre" id="txtnombre">
+    <br>
+    <label for="">Raza</label>
+    <input type="text" name="txtraza" id="txtraza">
+    <br>
+    <label for="">Genero</label>
+    <select name="cbogenero" id="cbogenero">
+        <option value="">Seleccionar</option>
+        
+        {% for m in marcas %}
+
+        <option value="{{ m.id }}">{{ m.nombre }}</option>
+
+        {% endfor %}
+
+    </select>
+    <br>
+    <label for="">Fecha de ingreso</label>
+    <input type="date" name="txtingreso" id="txtingreso">
+    <br>
+    <label for="">Fecha de nacimiento</label>
+    <input type="date" name="txtnacimiento" id="txtnacimiento">
+    <br>
+    <label for="">Imagen de la mascota</label>
+
+</form>
+<h3>{{ mensaje }}</h3>
+{% endblock contenido %}

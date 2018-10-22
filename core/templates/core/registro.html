@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="Imagenes/favicon.ico" type="image/x-icon">
+    <title>Mis Perris - Registro</title>
+    {% load static%}
+    <link rel="stylesheet" href="{% static 'core/css/Registros.css'%}">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="{% static 'core/js/jquery.validate.min.js'%}"></script>
+    <script src="{% static 'core/js/validaciones.js'%}"></script>
+    <script src="{% static 'core/js/Combo.js'%}"></script>
+
+    
+
+</head>
+<body>
+    <h1 class="FormTitulo"> Bienvenido al registro de adopción</h1>
+        <form action="" class="Registro" method="POST">
+
+            <h2 class="FormSubtitulo">CREA UNA NUEVA CUENTA</h2>
+            <div class="Contenedor-Registro">
+            <input type="email" name="txtcorreo" id="txtcorreo" class="input-100" placeholder="Correo Electronico">
+            <input type="text" name="txtnombres" placeholder="Nombre Completo" id="txtnombres" class="input-100">
+            <input type="text" name="txtrut" placeholder="Rut" id="txtrut" class="input-48">
+            <input type="number" name="txttelefono" placeholder="Teléfono de contacto" id="txttelefono" class="input-dif">
+            <div class="div-dif">
+            <div class="div-dif2">
+                <input type="text" name="fechanaci" class="FechaNaci" id="fechanaci" placeholder="Fecha de Nacimiento"/>
+            </div>
+            <div class="div-dif3" style="margin-top:20px;">
+                <select name="cboregion"  id="cboregion" class="SELECT1">
+                    <option value="">Selecciona tu región</option>
+                </select>
+            </div>
+            </div>
+            <div class="div-dif">
+            <div class="div-dif2">
+            <select id="cbovivienda" name="cbovivienda" class="SELECT2">
+            <option value="">Seleccionar tipo vivienda</option>
+                
+            </select>
+            </div>
+            <div class="div-dif2">
+            <select id="cbocomuna" name="cbocomuna" class="SELECT3" disabled="true">    
+            <option value="">Selecciona tu comuna</option>
+            </select>
+            </div>
+            </div>
+            <br>
+            <input type="submit" value="Guardar datos" name="BtnRegistro" id="BtnRegistro" class="Boton">
+            <input type="reset" value="Limpiar datos" name="BtnBorrar" id="BtnBorrar" class="Botoncito">
+            </div>
+        </form>
+        
+    <h2 class="FormSubtitulo"></h2>
+</body>
+</html>
