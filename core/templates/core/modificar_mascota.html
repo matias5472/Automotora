@@ -32,38 +32,48 @@ i.	En la galería se deben listar las imágenes de los perros en estado rescatad
 
             <h2 class="FormSubtitulo">ingrese los datos de la mascota</h2>
             <div class="Contenedor-Registro">
-            <input type="text" name="nombremascota" id="nombremascota" class="put" placeholder="Nombre de la mascota">
+            <input type="text" name="nombremascota" id="nombremascota" class="put" placeholder="Nombre de la mascota" value="{{ mascota.nombre }}">
             <select name="razamascota" id="razamascota" class="put">
                 <option value="">Seleccione Raza</option>
-                {% for r in raza%}
-                <option value="{{ r.id }}">{{ r.nomRaza }}</option>
+                    
+                <option 
+                {% for r in raza%}  
+                    {% if r.id == mascota.Raza.id %}
+                    {{ 'selected' }}
+
+                    {% endif %}
+                value="{{ r.id }}">{{ r.nomRaza }}</option>
                 {% endfor%}
             </select>
             <label for="" class="fechas">Fecha de nacimiento &nbsp &nbsp &nbsp &nbsp &nbsp Fecha de ingreso</label>
-            <input type="date" name="nacimiento" id="" class="date">
-            <input type="date" name="ingreso" id="" class="date">
+            <input type="date" name="nacimiento" id="" class="date" value="{{ mascota.fechaNacimiento }}">
+            <input type="date" name="ingreso" id="" class="date" value="{{ mascota.fechaNacimiento }}">
             <select id="cboestado" name="cboestado" class="select">    
-            <option value="">Seleccione el estado</option>
+                <option value="">Seleccione el estado</option>
 
-            {% for e in estado %}
+                {% for e in estado %}
+                {% if e.id == estado.id %}
+                {{ 'selected' }}
 
-            <option value="{{ e.id }}">{{ e.nomEstado }}</option>
+                {% endif %}
+                <option value="{{ e.id }}">{{ e.nomEstado }}</option>
 
-            {% endfor %}
-
+                {% endfor %}
             </select>
             <select id="cbogenero" name="cbogenero" class="select">    
-            <option value="">Seleccione el genero</option>
+                <option value="">Seleccione el genero</option>
 
-            {% for g in genero %}
+                {% for g in genero %}
+                {% if g.id == genero.id %}
+                {{ 'selected' }}
 
-            <option value="{{ g.id }}">{{ g.nomGenero }}</option>
+                {% endif %}
+                <option value="{{ g.id }}">{{ g.nomGenero }}</option>
 
-            {% endfor %}
-
+                {% endfor %}
             </select>
 
-            <input type="file" name="Foto" id="Foto">
+            <input type="file" name="Foto" id="Foto" value="{{ mascota.Foto }}">
 
             <input type="submit" value="Guardar datos" name="BtnRegistro" id="BtnRegistro" class="Boton">
             <input type="reset" value="Limpiar datos" nafme="BtnBorrar" id="BtnBorrar" class="Botoncito">

@@ -24,7 +24,7 @@ select {
 
 .FechaNaci {
     width: 96%;
-    margin-top: 4%
+    margin-top: 4px;
 }
 
 .Registro {
@@ -33,6 +33,7 @@ select {
     margin: auto;
     background: rgba(63, 59, 59, 0.733);
     border-radius: 7px;
+    margin-top: 10%;
 }
 
 .FormTitulo {
@@ -71,18 +72,15 @@ input {
 
 .input-48 {
     width: 48%;
-    margin-top: 4%
 }
 
 .input-100 {
     width: 100%;
-    margin-top: 4%
 }
 
 .input-dif {
     margin-left: 4%;
     width: 48%;
-    margin-top: 4%
 }
 
 .div-dif {
@@ -93,7 +91,6 @@ input {
 .Fecha {
     font-size: 18px;
     color: white;
-    margin-top: 3%
 }
 
 .div-dif2 {
@@ -109,18 +106,16 @@ input {
 .SELECT1 {
     width: 96%;
     margin-left: 9px;
-    margin-top: -5%;
+    margin-top: -9%;
 }
 
 .SELECT2 {
     width: 96%;
-    margin-top: 3%
 }
 
 .SELECT3 {
     width: 96%;
     margin-left: 9px;
-    margin-top: 3%
 }
 
 select {
@@ -140,13 +135,19 @@ select {
     cursor: pointer;
 }
 
+.login{
+
+    width: 65%;
+    margin-left: 17%;
+
+}
+
 .Boton {
     background-color: rgba(0, 0, 0, 0.493);
     color: rgb(255, 255, 255);
     border: 2px solid rgb(119, 121, 119);
     padding: 10px;
-    margin-left: 21%;
-    margin-top: 5%;
+    margin-left: 40%;
 }
 
 .Boton:hover {
@@ -177,5 +178,4 @@ select {
     margin: 4px 3px;
     transition-duration: 0.4s;
     cursor: pointer;
-    margin-top: 5%;
 }

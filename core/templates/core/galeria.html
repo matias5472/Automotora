@@ -1,15 +1,97 @@
-{% extends 'core/base.html'%}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="Imagenes/favicon.ico" type="image/x-icon">
+    <title>Mis Perris</title>
+    {% load static%}
+    <!-- DISEÑOS DE LAS PÁGINAS! -->
+    <link rel="stylesheet" href="{% static 'core/css/Estilo.css'%}">
+    <!-- PLUGINS & SCRIPS! -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
+    <script src="{% static 'core/js/inicializacion.js'%}"></script>
 
-{% load static%}
+</head>
+<body>
 
-{% block Landing2%}
-<div class="galeria">
-    <a data-fancybox="gallery" href="Imagenes/rescatados/Bigotes.jpg"><img src="{% static 'core/img/rescatados/Bigotes_tn.jpg'%}" class="Galeria1"></a>
-    <a data-fancybox="gallery" href="Imagenes/rescatados/Chocolate.jpg"><img src="{% static 'core/img/rescatados/Chocolate_tn.jpg'%}" class="Galeria2"></a>
-    <a data-fancybox="gallery" href="Imagenes/rescatados/Luna.jpg"><img src="{% static 'core/img/rescatados/Luna_tn.jpg'%}" class="Galeria3"></a>
-    <a data-fancybox="gallery" href="Imagenes/rescatados/Maya.jpg"><img src="{% static 'core/img/rescatados/Maya_tn.jpg'%}" class="Galeria4"></a>
-    <a data-fancybox="gallery" href="Imagenes/rescatados/Oso.jpg"><img src="{% static 'core/img/rescatados/Oso_tn.jpg'%}" class="Galeria5"></a>
-    <a data-fancybox="gallery" href="Imagenes/rescatados/Pexel.jpg"><img src="{% static 'core/img/rescatados/Pexel_tn.jpg'%}" class="Galeria6"></a>
-</div>
+    <!-- Cabezera -->
+    <header>
+        <img src="{% static 'core/img/logo.png'%}" alt="LogoPerrito" class="Logo">
+        <ul class="Listado">
+            <li><a href="{% url 'home'%}">Inicio</a></li>
+            <li><a href="{% url 'formulario'%}">Registrate</a></li>
+            <li><a href="#!">Servicios</a></li>
+            <li><a href="{% url 'galeria'%}">Galeria</a></li>
 
-{% endblock Landing2%}
+            {% if request.user.is_authenticated %}
+            <li>
+                <a href="{% url 'logout' %}">Logout</a>
+            </li>
+            {% else %}
+            <li>
+                <a href="{% url 'login' %}">Login</a>
+            </li>
+            {% endif %}
+            
+        </ul>
+    </header> 
+
+    <!-- Eslogan & Más -->
+    <div class="Landing">
+
+        <!-- SLIDER -->
+        <div class="slider">
+            <div>
+                <img title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in nibh sagittis, feugiat lacus pretium, sollicitudin massa. Nullam sit amet odio erat." class="imagen_landing" src="{% static 'core/img/adoptados/Apolo.jpg'%}" alt="Adoptados">
+            </div>
+            <div>
+                <img title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in nibh sagittis, feugiat lacus pretium, sollicitudin massa. Nullam sit amet odio erat." class="imagen_landing" src="{% static 'core/img/adoptados/Duque.jpg'%}" alt="Adoptados">
+            </div>
+            <div>
+                <img class="imagen_landing" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in nibh sagittis, feugiat lacus pretium, sollicitudin massa. Nullam sit amet odio erat." src="{% static 'core/img/adoptados/Gabi.jpg'%}" alt="Adoptados">
+            </div>
+            <div>
+                <img class="imagen_landing" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in nibh sagittis, feugiat lacus pretium, sollicitudin massa. Nullam sit amet odio erat." src="{% static 'core/img/adoptados/Tom.jpg'%}" alt="Adoptados">
+            </div>
+        </div>
+
+        <h2 class="Eslogan">+569 98765431</h2>
+        <h2 class="Eslogan_Center">Rescate y adopción de perros callejeros</h2>
+        <ul class="Redes_Sociales">
+            <li><img src="{% static 'core/img/Social/social-inst.png'%}" alt="Insta"></li>
+            <li><img src="{% static 'core/img/Social/social-twitter.png'%}" alt="Twitter"></li>
+            <li><img src="{% static 'core/img/Social/socialfacebook.png'%}" alt="Facebook"></li>
+            <li><img src="{% static 'core/img/Social/socialplus.png'%}" alt="Social"></li>
+        </ul>
+    </div>
+
+    <!-- Cuerpo de la página -->
+    <div class="Landing2">
+        <div class="galeria">
+            <a data-fancybox="gallery" href="Imagenes/rescatados/Bigotes.jpg"><img src="{% static 'core/img/rescatados/Bigotes_tn.jpg'%}" class="Galeria1"></a>
+            <a data-fancybox="gallery" href="Imagenes/rescatados/Chocolate.jpg"><img src="{% static 'core/img/rescatados/Chocolate_tn.jpg'%}" class="Galeria2"></a>
+            <a data-fancybox="gallery" href="Imagenes/rescatados/Luna.jpg"><img src="{% static 'core/img/rescatados/Luna_tn.jpg'%}" class="Galeria3"></a>
+            <a data-fancybox="gallery" href="Imagenes/rescatados/Maya.jpg"><img src="{% static 'core/img/rescatados/Maya_tn.jpg'%}" class="Galeria4"></a>
+            <a data-fancybox="gallery" href="Imagenes/rescatados/Oso.jpg"><img src="{% static 'core/img/rescatados/Oso_tn.jpg'%}" class="Galeria5"></a>
+            <a data-fancybox="gallery" href="Imagenes/rescatados/Pexel.jpg"><img src="{% static 'core/img/rescatados/Pexel_tn.jpg'%}" class="Galeria6"></a>
+        </div>
+    </div>
+    <div class="Landing2">
+        {% block Landing2%}
+        
+        {% endblock Landing2%}
+    </div>
+
+    <!-- Pie de Página  -->
+    <footer class="Foter">
+        <h3 class="Ultimos">Desarrollo Web & Mobil</h3>
+    </footer>
+</body>
+</html>

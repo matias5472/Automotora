@@ -1,4 +1,4 @@
-"""automotora URL Configuration
+"""misperris URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.1/topics/http/urls/
@@ -15,11 +15,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
-admin.site.site_header = "Administracion automotora"
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', include('core.urls')),
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/', include('accounts.urls')),
+    path('oauth/', include('social_django.urls', namespace='social')),
 ]
+
+admin.site.site_header = "Administración Mis Perris"
+admin.site.index_ttile = "Mis Perris"
+
+#Imagenes
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

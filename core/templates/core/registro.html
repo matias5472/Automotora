@@ -14,15 +14,14 @@
     <script src="{% static 'core/js/jquery.validate.min.js'%}"></script>
     <script src="{% static 'core/js/validaciones.js'%}"></script>
     <script src="{% static 'core/js/Combo.js'%}"></script>
-
-    
-
 </head>
 <body>
     <h1 class="FormTitulo"> Bienvenido al registro de adopción</h1>
         <form action="" class="Registro" method="POST">
 
-            <h2 class="FormSubtitulo">CREA UNA NUEVA CUENTA</h2>
+            {% csrf_token %}
+
+            <h2 class="FormSubtitulo">REGISTRO DE USUARIO</h2>
             <div class="Contenedor-Registro">
             <input type="email" name="txtcorreo" id="txtcorreo" class="input-100" placeholder="Correo Electronico">
             <input type="text" name="txtnombres" placeholder="Nombre Completo" id="txtnombres" class="input-100">
@@ -35,6 +34,11 @@
             <div class="div-dif3" style="margin-top:20px;">
                 <select name="cboregion"  id="cboregion" class="SELECT1">
                     <option value="">Selecciona tu región</option>
+                    {% for r in regiones%}
+
+                    <option value="{{ r.id }}">{{ r.nomRegion }}</option>
+            
+                    {% endfor %}
                 </select>
             </div>
             </div>
@@ -42,12 +46,20 @@
             <div class="div-dif2">
             <select id="cbovivienda" name="cbovivienda" class="SELECT2">
             <option value="">Seleccionar tipo vivienda</option>
+                {% for v in tipovivienda%}
                 
+            <option value="{{ v.id }}">{{ v.descripcion }}</option>
+
+                {% endfor%}
+
             </select>
             </div>
             <div class="div-dif2">
-            <select id="cbocomuna" name="cbocomuna" class="SELECT3" disabled="true">    
-            <option value="">Selecciona tu comuna</option>
+            <select id="cbocomuna" name="cbocomuna" class="SELECT3">    
+                <option value="">Selecciona tu comuna</option>
+                {% for c in comunas%}
+                <option value="{{ c.id }}">{{ c.nomComuna }}</option>
+                {% endfor %}
             </select>
             </div>
             </div>
@@ -57,6 +69,6 @@
             </div>
         </form>
         
-    <h2 class="FormSubtitulo"></h2>
+    <h2 class="FormSubtitulo">{{ mensaje }}</h2>
 </body>
 </html>

@@ -22,7 +22,7 @@ header {
 
 .Listado {
     float: right;
-    margin-right: 400px;
+    margin-right: 2%;
 }
 
 .Listado li {
@@ -56,7 +56,7 @@ header {
 }
 
 .Landing2 {
-    background-color: rgb(109, 204, 170);
+    background-color: white;
     width: 100%;
     height: auto;
 }
@@ -72,7 +72,7 @@ header {
     border: none !important;
     box-shadow: none !important;
     width: 100%;
-    margin-left: 26%;
+    margin-left: 25%;
 }
 
 .bx-caption {
@@ -200,7 +200,7 @@ a:link {
     height: 40px;
     border: 1px solid black;
     color: black;
-    width: 100px;
+    width: 45%;
 }
 
 .Conte {
@@ -403,7 +403,7 @@ a:link {
 
     .bx-wrapper {
         margin-left: 0%;
-        margin-top: 70%;
+        margin-top: 100%;
     }
 
     .Landing {
