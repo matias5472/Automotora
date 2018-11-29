@@ -1,0 +1,34 @@
+json agregar mascota (postman):
+{
+	"nombremascota":"larry",
+
+	"fechaIngreso":"2018-01-01",
+
+	"fechaNacimiento":"2017-02-01",
+
+	"Raza_id":1,
+
+	"Genero_id":1,
+
+	"Estado_id":1
+
+}
+
+json modificar mascota (postman):
+
+{
+	"id":18,
+
+	"nombremascota":"nico",
+
+	"fechaIngreso": "2018-11-19",
+
+        "fechaNacimiento": "2018-11-19",
+
+	"Raza_id":1,
+
+	"Genero_id":1,
+
+	"Estado_id":1
+
+}
