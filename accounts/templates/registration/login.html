@@ -13,25 +13,27 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
 </head>
+<body>
     <form action="" method="post" class="Registro"></form>
-    <div class="container">
-        <h2 class="FormSubtitulo">INGRESO DE USUARIO</h2>
-        {% load crispy_forms_tags %}
-        <form action="" method="POST">
+        <div class="container">
+            <h2 class="FormSubtitulo">INGRESO DE USUARIO</h2>
+            {% load crispy_forms_tags %}
+            <form action="" method="POST">
 
-            {% csrf_token %}
+                {% csrf_token %}
 
-            <table>
-                {{ form | crispy }}
-            </table>
+                <table>
+                    {{ form | crispy }}
+                </table>
 
-            <input type="submit" value="Registrar" class="btn btn-danger">
+                <input type="submit" value="Registrar" class="btn btn-danger">
 
-        </form>
-        <hr>
-        <a href="{% url 'register' %}">Registrate</a>
-        <hr>
-        <a href="{% url 'social:begin' 'facebook' %}">Login con facebook</a>
-    </div>    
+            </form>
+            <hr>
+            <a href="{% url 'register' %}">Registrate</a>
+            <hr>
+            <a href="{% url 'social:begin' 'facebook' %}">Login con facebook</a>
+        </div>    
     </form>
+</body>
 </html>

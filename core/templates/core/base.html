@@ -9,6 +9,7 @@
     {% load static%}
     <!-- DISEÑOS DE LAS PÁGINAS! -->
     <link rel="stylesheet" href="{% static 'core/css/Estilo.css'%}">
+    <link rel="stylesheet" href="{% static 'core/css/lista.css'%}">
     <!-- PLUGINS & SCRIPS! -->
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
@@ -17,6 +18,76 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
     <script src="{% static 'core/js/inicializacion.js'%}"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase-messaging.js"></script>
+    <script>
+    // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCNfFvEisfkUxGqcC8oqcqd2LAvlkq0K8Y",
+    authDomain: "mis-perris-8651e.firebaseapp.com",
+    databaseURL: "https://mis-perris-8651e.firebaseio.com",
+    projectId: "mis-perris-8651e",
+    storageBucket: "mis-perris-8651e.appspot.com",
+    messagingSenderId: "763175347300"
+  };
+  firebase.initializeApp(config);
+
+    // ahora el codigo que corresponde a la recepción de las notificaciones que enviará firebase
+
+    //paso 1 crear el objeto de mansajeria
+    const messaging = firebase.messaging();
+
+    //paso 2 registrar el serviceworker con firebase
+    navigator
+    .serviceWorker
+    .register('./serviceworker.js')
+    .then(function(){
+        //enviar el registro del serviceworker a firebase
+        messaging.useServiceWorker(register);
+        
+        //pedimos permisos para enviar notificaciones al usuario
+        messaging
+        .requestPermission()
+        .then(function(){
+
+            //el permiso fue aceptado por el usuario
+            return messaging.getToken();
+
+        })
+        .then(function(token){
+            console.log("token generado: " + token)
+            //en este paso es necesaio enviar al token a django para almacenar
+
+            //enviamos el token
+            fetch('api/agregar-token/', {
+                method:'POST',
+                body:JSON.stringify({
+                    'token':token
+                })
+            })
+            .then(function(){
+                console.log("el token ha sido enviado")
+            })
+        })
+        .catch(function(err){
+            console.log("El usuario no ha aceptado: " + err)
+        })
+    })
+
+
+    //ahora capturamos el evento que se genera cuando firebase me envia una notificacion
+    messaging.onMessage(function(payload){
+
+        console.log(payload)
+
+        var option ={
+            body:payload.notification.body,
+            icon:payload.notification.icon
+        }
+        //mostramos la notificacion
+        var notificacion = new Notification(payload.notificacion.title, option)
+    })
+    </script>
 
 </head>
 <body>
@@ -25,10 +96,10 @@
     <header>
         <img src="{% static 'core/img/logo.png'%}" alt="LogoPerrito" class="Logo">
         <ul class="Listado">
-            <li><a href="{% url 'home'%}">Inicio</a></li>
-            <li><a href="{% url 'formulario'%}">Registrate</a></li>
-            <li><a href="#!">Servicios</a></li>
-            <li><a href="{% url 'galeria'%}">Galeria</a></li>
+            <li><a href="{% url 'home' %}">Inicio</a></li>
+            <li><a href="{% url 'formulario' %}">Registrate</a></li>
+            <li><a href="{% url 'listado_mascotas' %}">Mascotas</a></li>
+            <li><a href="{% url 'galeria' %}">Galeria</a></li>
 
             {% if not request.user.is_authenticated %}
             <li>

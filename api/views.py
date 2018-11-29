@@ -1,25 +1,19 @@
 from django.shortcuts import render
-
-# Create your views here.
-from django.shortcuts import render
 import json
+
 from django.core import serializers
 from django.http import HttpResponse, HttpResponseBadRequest
 from core.models import Raza, Genero, Estado, Foto, Mascota
 
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods
-
-
-# Create your views here.
-
 from fcm_django.models import FCMDevice
 
 @csrf_exempt
 @require_http_methods(['POST'])
 def agregar_token(request):
     body = request.body.decode('utf-8')
-    bodyDict = jsin.loads(body)
+    bodyDict = json.loads(body)
     token = bodyDict['token']
 
     #preguntamos si ya existe el token en la BBDD
@@ -63,45 +57,46 @@ def agregar_mascota(request):
 
     mascota = Mascota()
     mascota.nombre = bodyJson['nombremascota']
-    mascota.fechaIngreso = bodyJson['ingreso']
-    mascota.fechaNacimiento = bodyJson['nacimiento']
-    mascota.Raza = (id=bodyJson['Raza_id'])
-    mascota.Genero = (id=bodyJson['Genero_id'])
-    mascota.Estado = (id=bodyJson['Estado_id'])
-    #mascota.Foto = ()
+    mascota.fechaIngreso = bodyJson['fechaIngreso']
+    mascota.fechaNacimiento = bodyJson['fechaNacimiento']
+    mascota.Raza = Raza(id=bodyJson['Raza_id'])
+    mascota.Genero = Genero(id=bodyJson['Genero_id'])
+    mascota.Estado = Estado(id=bodyJson['Estado_id'])
 
     try:
-        auto.save()
+        mascota.save()
         return HttpResponse(json.dumps({'mensaje':'agregado correctamente'}), content_type="application/json")
     except:
         return HttpResponseBadRequest(json.dumps({'mensaje':'no se ha podido correctamente'}), content_type="application/json")
 
 @csrf_exempt
 @require_http_methods(['PUT'])
-def modificar_auto(request):
+def modificar_mascota(request):
     body = request.body.decode('utf-8')
     #transformamos el body que estaba en un string a un json
     bodyJson = json.loads(body)
 
-    auto = Automovil()
-    auto.id = bodyJson['id']
-    #auto.patente = bodyJson['patente']
-    auto.modelo = bodyJson['modelo']
-    auto.anio = bodyJson['anio']
-    auto.marca = Marca(id=bodyJson['marca_id'])
+    mascota = Mascota()
+    mascota.id = bodyJson['id']
+    mascota.nombre = bodyJson['nombremascota']
+    mascota.fechaIngreso = bodyJson['fechaIngreso']
+    mascota.fechaNacimiento = bodyJson['fechaNacimiento']
+    mascota.Raza = Raza(id=bodyJson['Raza_id'])
+    mascota.Genero = Genero(id=bodyJson['Genero_id'])
+    mascota.Estado = Estado(id=bodyJson['Estado_id'])
 
     try:
-        auto.save()
+        mascota.save()
         return HttpResponse(json.dumps({'mensaje':'modificado correctamente'}), content_type="application/json")
     except:
         return HttpResponseBadRequest(json.dumps({'mensaje':'no se ha modificar correctamente'}), content_type="application/json")
 
 @csrf_exempt
 @require_http_methods(['DELETE'])
-def eliminar_auto(request, id):
+def eliminar_mascota(request, id):
     try:
-        auto = Automovil.objects.get( id=id )
-        auto.delete()
+        mascota = Mascota.objects.get( id=id )
+        mascota.delete()
         return HttpResponse(json.dumps({'mensaje':'Eliminado correctamente'}), content_type="application/json")
     except:
         return HttpResponseBadRequest(json.dumps({'mensaje':'no se ha eliminar correctamente'}), content_type="application/json")

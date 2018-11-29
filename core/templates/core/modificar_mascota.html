@@ -40,23 +40,25 @@ i.	En la galería se deben listar las imágenes de los perros en estado rescatad
                 {% for r in raza%}  
                     {% if r.id == mascota.Raza.id %}
                     {{ 'selected' }}
-
                     {% endif %}
+
                 value="{{ r.id }}">{{ r.nomRaza }}</option>
+
                 {% endfor%}
             </select>
             <label for="" class="fechas">Fecha de nacimiento &nbsp &nbsp &nbsp &nbsp &nbsp Fecha de ingreso</label>
-            <input type="date" name="nacimiento" id="" class="date" value="{{ mascota.fechaNacimiento }}">
-            <input type="date" name="ingreso" id="" class="date" value="{{ mascota.fechaNacimiento }}">
+            <input type="date" name="nacimiento" id="" class="date" value="{{ mascota.fechaNacimientoC }}">
+            <input type="date" name="ingreso" id="" class="date" value="{{ mascota.fechaIngresoC2 }}">
             <select id="cboestado" name="cboestado" class="select">    
                 <option value="">Seleccione el estado</option>
 
                 {% for e in estado %}
-                {% if e.id == estado.id %}
+                <option
+                {% if e.id == mascota.Estado.id %}
                 {{ 'selected' }}
 
                 {% endif %}
-                <option value="{{ e.id }}">{{ e.nomEstado }}</option>
+                value="{{ e.id }}">{{ e.nomEstado }}</option>
 
                 {% endfor %}
             </select>
@@ -64,11 +66,12 @@ i.	En la galería se deben listar las imágenes de los perros en estado rescatad
                 <option value="">Seleccione el genero</option>
 
                 {% for g in genero %}
-                {% if g.id == genero.id %}
+                <option
+                {% if g.id == mascota.Genero.id %}
                 {{ 'selected' }}
 
                 {% endif %}
-                <option value="{{ g.id }}">{{ g.nomGenero }}</option>
+                value="{{ g.id }}">{{ g.nomGenero }}</option>
 
                 {% endfor %}
             </select>

@@ -24,6 +24,8 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/', include('accounts.urls')),
     path('oauth/', include('social_django.urls', namespace='social')),
+    path('api/', include('api.urls')),
+    path('', include('pwa.urls')),
 ]
 
 admin.site.site_header = "Administración Mis Perris"

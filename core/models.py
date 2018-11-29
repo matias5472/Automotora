@@ -84,6 +84,12 @@ class Mascota(models.Model):
 
     def __str__(self):
         return self.nombre
+    
+    def fechaNacimientoC(self):
+        return self.fechaNacimiento.strftime("%Y-%m-%d")
+        
+    def fechaIngresoC2(self):
+        return self.fechaIngreso.strftime("%Y-%m-%d")
 
 
 

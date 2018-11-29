@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Estado, Genero, Region, TipoVivienda, Raza, Mascota, Comuna,  Cliente, Foto
+from .models import Estado, Genero, Region, TipoVivienda, Raza, Mascota, Comuna,  Cliente
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
@@ -64,9 +64,9 @@ def formulario(request):
     return render(request, 'core/registro.html', variable)
 
 
-@login_required
+
 def agregar_mascota(request):
-    #buscaremos todas las marcas
+    #buscaremos todas las mascotas
     #y se las enviaremos al template
 
     genero = Genero.objects.all()
@@ -77,8 +77,7 @@ def agregar_mascota(request):
        'genero': genero,
         'estado': estado,
         'raza': raza,
-        'Foto': Foto
-       }
+    }
 
     if request.POST:
 

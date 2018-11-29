@@ -38,8 +38,8 @@ LOGOUT_REDIRECT_URL = "/accounts/login"
 
 # Application definition
 
-SOCIAL_AUTH_FACEBOOK_KEY = '1856466284472219'
-SOCIAL_AUTH_FACEBOOK_SECRET = 'f452f99d592799cca63d47d70ed56b2e '
+SOCIAL_AUTH_FACEBOOK_KEY = '1881586501949459'
+SOCIAL_AUTH_FACEBOOK_SECRET = '7209a30781956723ac399718a09df858'
 SOCIAL_AUTH_LOGIN_ERROR_URL = '/'
 SOCIAL_AUTH_RAISE_EXCEPTIONS = False
 
@@ -54,6 +54,9 @@ INSTALLED_APPS = [
     'accounts',
     'social_django',
     'crispy_forms',
+    'api',
+    'pwa',
+    'fcm_django',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -153,3 +156,25 @@ AUTHENTICATION_BACKENDS = (
     'social_core.backends.facebook.FacebookOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
+
+PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'serviceworker.js')
+
+PWA_APP_NAME = 'MisPerris'
+
+PWA_APP_ICONS = [
+    {
+        'src':'/static/core/img/perro.png',
+        'sizes':'160x160'
+    }
+]
+
+FCM_DJANGO_SETTINGS = {
+        "FCM_SERVER_KEY": "AAAAsbDLpGQ:APA91bFtwqhd4AlmW34fMkprZhVZhfOZ5S1ROEKnllwalUBL8QUNcR1HC6GsMwGF7HCxk-bcK5PniWAbv1fAukMLL_52Odjh94JuV2qqHDp-pCjh9R-1Hj2T107l9aQUHIrjQtvoEqmd",
+         # true if you want to have only one active device per registered user at a time
+         # default: False
+        "ONE_DEVICE_PER_USER": False,
+         # devices to which notifications cannot be sent,
+         # are deleted upon receiving error response from FCM
+         # default: False
+        "DELETE_INACTIVE_DEVICES": False,
+}

@@ -1,14 +1,18 @@
 var CACHE_NAME = 'my-site-cache-v1';
 var urlsToCache = [
     '/',
+    '/galeria/',
+    '/registro/',
+    '/Registro-de-Mascota/',
+    '/listado-de-mascotas',
     '/static/core/css/Estilo.css',
     '/static/core/css/component.css',
     '/static/core/css/demo.css',
     '/static/core/css/mascotacs.css',
     '/static/core/css/normalize.css',
     '/static/core/css/Registros.css',
-    '/static/core/img/Ahorasi.png',
-    '/static/core/img/crowfunding.png',
+    '/static/core/img/Ahorasi.jpg',
+    '/static/core/img/crowfunding.jpg',
     '/static/core/img/logo.png',
     '/static/core/img/perro.png',
     '/static/core/img/rescate.jpg',
@@ -34,10 +38,13 @@ var urlsToCache = [
     '/static/core/img/social/social-twitter.png',
     '/static/core/img/social/socialfacebook.png',
     '/static/core/img/social/socialplus.png',
+    '/static/core/img/favicon.ico',
+    '/static/core/js/inicializacion.js',
     'https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css',
     'https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js',
     'https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js',
-    '/static/core/js/inicializacion.js',
+    'https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js',
+    'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js',
 ];
 
 self.addEventListener('install', function(event) {
@@ -54,11 +61,11 @@ self.addEventListener('install', function(event) {
 self.addEventListener('fetch', function(event){
     event.respondWith(
         caches.match(event.request).then(function(response) {
-            if(response) {
-                return response;
-            }
+           
 
-            return fetch(event.request);
+            return fetch(event.request).catch(function() {
+                return response
+            })
         })
     );
 });

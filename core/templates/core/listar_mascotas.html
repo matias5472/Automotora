@@ -1,48 +1,52 @@
 {% extends 'core/base.html'%}
 {% load static %}
-{% block Landing2%}
+{% block Landing2 %}
 
-<h2>Listado de Mascotas</h2>
+<h1 class="tituloListado">Mascotas Ingresadas</h1>
+        
+        <table border="1">
+            <thead>
+                <tr id="t1">
+                    <td>Nombre</td>
+                    <td>Raza</td>
+                    <td>Fecha de ingreso</td>
+                    <td>Fecha de nacimiento</td>
+                    <td>Estado</td>
+                    <td>Genero</td>
+                    <td>Foto</td>
+                    <td>Opciones</td>    
+                </tr>
+           </thead>
 
-<table>
-    <tr>
-        <th>Nombre</th>
-        <th>Fecha Ingreso</th>
-        <th>Fecha Nacimiento</th>
-        <th>Raza</th>
-        <th>Genero</th>
-        <th>Estado</th>
-        <th>Imagen</th>
-        <th>Opciones</th>
+        <tbody> 
+            {% for m in mascotas %}
 
-        {% for m in mascotas%}
+            {% csrf_token %}
+            
+            <tr id="t2">
+                <td data-label="nombre">{{ m.nombre }}</td>
+                <td data-label="Raza">{{ m.Raza }}</td>
+                <td data-label="fechaIngreso">{{ m.fechaIngreso }}</td>
+                <td data-label="fechaNacimiento">{{ m.fechaNacimiento }}</td>
+                <td data-label="Estado">{{ m.Estado }}</td>
+                <td data-label="Genero">{{ m.Genero }}</td>
+                <td data-label="foto"><img src="../media/{{ m.Foto }}"></td>
+                <td>
+                  <a class="btn btn-primary"href="{% url 'modificar_mascota' m.id %}">Actualizar</a>
+                  <a class="btn btn-danger"href="{% url 'eliminar_mascota' m.id %}">Eliminar</a>
+                </td>
+               
+                
+            </tr>
+        </tbody> 
+        </table>
+        {% if messages %}
 
-        <tr>
-            <td>{{ m.nombre }}</td>
-            <td>{{ m.fechaIngreso }}</td>
-            <td>{{ m.fechaNacimiento</td>
-            <td>{{ m.Raza }}</td>
-            <td>{{ m.Genero }}</td>
-            <td>{{ m.Estado }}</td>
-            <td>
-                {% if m.Foto%}
-                <img src="{{ m.Foto.url}}" width="100" height="100">
-                {% endif %}
-            </td>
-            <td>
-                <a href="{% url 'eliminar_mascota' m.id %}">Eliminar</a>
-                <a href="{% url 'modificar_mascota' m.id %}">Modificar</a>
-            </td>
-        </tr>
-
-        {% endfor %}
-    </tr>
-</table>
-{% if messages %}
-
-    {% for n in messages %}
-    <h3>{{ n }}</h3>
-    {% endfor%}
+            {% for n in messages %}
+                <h3>{{ n }}</h3>
+            {% endfor %}
     
-{% endif%}
-{% endblock Landing2%}
+        {% endif %}
+        {% endfor %}
+
+{% endblock Landing2 %}
